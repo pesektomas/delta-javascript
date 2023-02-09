@@ -1,0 +1,58 @@
+import React, { type ReactElement } from 'react';
+import { type CounterInterface } from '../App';
+import Counter from './Counter';
+
+interface CountersPropsInterface {
+  counters: CounterInterface[];
+  onReset: () => void;
+  onIncrement: (counter: CounterInterface) => void;
+  onDecrement: (counter: CounterInterface) => void;
+  onDelete: (counterId: number) => void;
+  onRestart: () => void;
+}
+
+export default function Counters({
+  counters,
+  onReset,
+  onIncrement,
+  onDecrement,
+  onDelete,
+  onRestart,
+}: CountersPropsInterface): ReactElement {
+  return (
+    <div>
+      <div className="row">
+        <div className="">
+          <button
+            className="btn btn-success m-2"
+            onClick={onReset}
+            disabled={counters.length === 0}
+          >
+            <i className="fa fa-refresh" aria-hidden="true" />
+          </button>
+          <button
+            className="btn btn-primary m-2"
+            onClick={onRestart}
+            disabled={counters.length !== 0}
+          >
+            <i className="fa fa-recycle" aria-hidden="true" />
+          </button>
+        </div>
+      </div>
+
+      {}
+
+      {counters.map(
+        (counter: CounterInterface): ReactElement => (
+          <Counter
+            key={counter.id}
+            counter={counter}
+            onIncrement={onIncrement}
+            onDecrement={onDecrement}
+            onDelete={onDelete}
+          />
+        )
+      )}
+    </div>
+  );
+}

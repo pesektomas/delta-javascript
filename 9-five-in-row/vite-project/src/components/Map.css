@@ -1,0 +1,9 @@
+.mapWrapper {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.mapItem {
+    flex: 1 0 33%; /* explanation below */
+    border: 1px solid black;
+}
